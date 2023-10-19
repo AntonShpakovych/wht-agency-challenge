@@ -28,6 +28,7 @@ INSTALLED_APPS = [
 
     "rest_framework",
     "debug_toolbar",
+    "drf_spectacular",
 
     "api",
     "user",
@@ -107,10 +108,19 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"
 }
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=int(os.getenv("JWT_ACCESS_TOKEN_LIFE_TIME"))),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=int(os.getenv("JWT_REFRESH_TOKEN_LIFETIME"))),
     "UPDATE_LAST_LOGIN": bool(os.getenv("JWT_UPDATE_LAST_LOGIN"))
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Command Manager",
+    "DESCRIPTION": "Api for handling employee, command, projects",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": False,
+
 }

@@ -1,3 +1,4 @@
+from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
@@ -32,6 +33,7 @@ from api.paginations import (
 )
 
 
+@extend_schema(tags=["Position"])
 class PositionViewSet(viewsets.ModelViewSet):
     model = Position
     pagination_class = SmallResultsSetPagination
@@ -52,6 +54,7 @@ class PositionViewSet(viewsets.ModelViewSet):
         return PositionSerializer
 
 
+@extend_schema(tags=["Employee"])
 class EmployeeViewSet(viewsets.ModelViewSet):
     model = Employee
     pagination_class = StandardResultsSetPagination
@@ -70,6 +73,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
         return EmployeeSerializer
 
 
+@extend_schema(tags=["Command"])
 class CommandViewSet(viewsets.ModelViewSet):
     model = Command
     pagination_class = StandardResultsSetPagination
@@ -149,6 +153,7 @@ class CommandViewSet(viewsets.ModelViewSet):
         )
 
 
+@extend_schema(tags=["Project"])
 class ProjectViewSet(viewsets.ModelViewSet):
     model = Project
     pagination_class = StandardResultsSetPagination

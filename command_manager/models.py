@@ -24,7 +24,7 @@ class Employee(models.Model):
     )
 
     @property
-    def commands_quantity(self):
+    def commands_quantity(self) -> int:
         return self.commands.count()
 
     def __str__(self) -> str:
