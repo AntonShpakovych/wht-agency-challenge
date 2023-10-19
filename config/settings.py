@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "debug_toolbar",
     "drf_spectacular",
+    "django_filters",
 
     "api",
     "user",
@@ -108,7 +109,10 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema"
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "DEFAULT_FILTER_BACKENDS": (
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ),
 }
 
 SIMPLE_JWT = {
@@ -122,5 +126,4 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "Api for handling employee, command, projects",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,
-
 }

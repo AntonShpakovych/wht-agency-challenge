@@ -32,6 +32,12 @@ from api.paginations import (
     StandardResultsSetPagination
 )
 
+from api.filters.command_manager.filters import (
+    EmployeeFilter,
+    CommandFilter,
+    ProjectFilter
+)
+
 
 @extend_schema(tags=["Position"])
 class PositionViewSet(viewsets.ModelViewSet):
@@ -58,6 +64,7 @@ class PositionViewSet(viewsets.ModelViewSet):
 class EmployeeViewSet(viewsets.ModelViewSet):
     model = Employee
     pagination_class = StandardResultsSetPagination
+    filterset_class = EmployeeFilter
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -77,6 +84,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
 class CommandViewSet(viewsets.ModelViewSet):
     model = Command
     pagination_class = StandardResultsSetPagination
+    filterset_class = CommandFilter
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -157,6 +165,7 @@ class CommandViewSet(viewsets.ModelViewSet):
 class ProjectViewSet(viewsets.ModelViewSet):
     model = Project
     pagination_class = StandardResultsSetPagination
+    filterset_class = ProjectFilter
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
