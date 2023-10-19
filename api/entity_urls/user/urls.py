@@ -6,7 +6,7 @@ from rest_framework_simplejwt.views import (
     TokenVerifyView
 )
 
-from api.views.user_views import UserCreateView
+from api.views.user.views import UserCreateView
 
 
 user_urlpatterns = [

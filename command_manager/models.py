@@ -4,6 +4,13 @@ from django.db import models
 class Position(models.Model):
     name = models.CharField(max_length=20, unique=True)
 
+    @property
+    def employees_quantity(self) -> int:
+        return self.employees.count()
+
+    def __str__(self) -> str:
+        return self.name
+
 
 class Employee(models.Model):
     email = models.EmailField(unique=True)
@@ -16,11 +23,15 @@ class Employee(models.Model):
         related_name="employees"
     )
 
-    class Meta:
-        ordering = ["first_name", "last_name"]
+    @property
+    def commands_quantity(self):
+        return self.commands.count()
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
+
+    class Meta:
+        ordering = ["first_name", "last_name"]
 
 
 class Command(models.Model):
@@ -30,14 +41,18 @@ class Command(models.Model):
 
     @property
     def command_size(self) -> int:
-        return self.employees.objects.count()
+        return self.employees.count()
 
     @property
     def command_experience(self) -> float:
         return sum(
             employee.experience
-            for employee in self.employees.objects.all()
+            for employee in self.employees.all()
         )
+
+    @property
+    def projects_quantity(self) -> int:
+        return self.projects.count()
 
     def __str__(self) -> str:
         return self.name
